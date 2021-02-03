@@ -21,10 +21,8 @@ export default class GameModel extends BaseModel {
 
   async fetchStat (skip = 0) {
     const data = this.get()
-    const page = skip / ROUND_PAGE_LIMIT
+    const page = Math.floor(skip / ROUND_PAGE_LIMIT)
     const roundsIdSlicedByPage = data.rounds.slice(page * ROUND_PAGE_LIMIT, (page + 1) * ROUND_PAGE_LIMIT)
-    console.debug(page * ROUND_PAGE_LIMIT, (page + 1) * ROUND_PAGE_LIMIT)
-    console.debug('roundsIdSlicedByPage', roundsIdSlicedByPage)
 
     const $players = this.query(PLAYERS_COLLECTION, { _id: { $in: data.players } })
     await $players.fetchAsync()

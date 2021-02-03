@@ -26,8 +26,6 @@ export default class RoundModel extends BaseModel {
     const $round = this.scope(`${this.getCollection()}.${id}`)
     await this.fetchAsync($round)
     const round = $round.get()
-    console.debug('previ round data', previousRound)
-    console.debug('round data', round)
     round.players[userId] = { type }
     round.finished = true
     round.finishedAt = Date.now()
@@ -65,9 +63,6 @@ export default class RoundModel extends BaseModel {
         winnerScore = previousComboValue
       }
     }
-    console.log('winnerScore', winnerScore)
-    console.log('isDraw', isDraw)
-    console.log('previousComboValue', previousComboValue)
 
     round.winner = winner
     round.comboFor = isDraw ? previousComboFor : winner
