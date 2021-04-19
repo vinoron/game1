@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { ImageBackground, TouchableOpacity } from 'react-native'
-import moment from 'moment'
-import { Div, Span, Row, Pagination, Select, Button, H3, Tag, Link, Avatar, Hr, TextInput, Multiselect } from '@startupjs/ui'
-import { observer, useValue, useQuery, useLocal, model } from '@startupjs/react-sharedb'
+import React from 'react'
+
 import { withRouter } from 'react-router'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { BASE_URL } from '@env'
+import { observer, useValue, useQuery, useSession, model } from 'startupjs'
+import { Div, Row, Pagination, Select, Button } from '@startupjs/ui'
+import moment from 'moment'
+
+
 import StatList from 'components/StatList'
 
 import { GAMES_COLLECTION, PAGE_LIMITS } from '../../const/default'
@@ -13,7 +13,7 @@ import { GAMES_COLLECTION, PAGE_LIMITS } from '../../const/default'
 import './index.styl'
 
 const GameList = ({ mode = 'user', active = true, history }) => {
-  const [userId] = useLocal('_session.userId')
+  const [userId] = useSession('userId')
   let [skip, $skip] = useValue(0)
   let [limit, $limit] = useValue(PAGE_LIMITS[0])
   let [openedStatGameId, $openedStatGameId] = useValue(0)
@@ -70,7 +70,7 @@ const GameList = ({ mode = 'user', active = true, history }) => {
           options=PAGE_LIMITS.map(l => ({ label: l, value: l }))
         )
       Row.deka
-        Div.row
+        Row.row
           Div.cell Name
           Div.cell Created At
           if (active)
@@ -79,7 +79,7 @@ const GameList = ({ mode = 'user', active = true, history }) => {
           if (mode === 'user')
             Div.gameJoin
         each game in games
-          Div.row
+          Row.row
             Div.cell #{game.name}
             Div.cell #{moment(game.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
             if (active)

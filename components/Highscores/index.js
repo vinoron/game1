@@ -1,6 +1,7 @@
 import React from 'react'
-import { Div, Span } from '@startupjs/ui'
-import { useQuery } from '@startupjs/react-sharedb'
+import { useQuery } from 'startupjs'
+import { Div } from '@startupjs/ui'
+
 import moment from 'moment'
 
 import { GAMES_COLLECTION } from '../../const/default'
@@ -22,7 +23,7 @@ const Highscores = () => {
   return pug`
     Div.root
       each game in games
-        Div.row
+        Row.row
           Div.cell #{game.winner.name}
           Div.cell #{game.name}
           Div.cell #{game.winner.score}

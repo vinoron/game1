@@ -1,11 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { ImageBackground, TouchableOpacity } from 'react-native'
-import moment from 'moment'
-import { Div, Span, Icon, Row, Pagination, Select, Button, H3, Tag, Link, Avatar, Hr, TextInput, Multiselect } from '@startupjs/ui'
-import { observer, useValue, useQuery, useLocal, model } from '@startupjs/react-sharedb'
+import React, { useEffect } from 'react'
 import { withRouter } from 'react-router'
+import { observer, useValue, model } from 'startupjs'
+import { Div, Span, Row, Pagination } from '@startupjs/ui'
 import { faHandRock, faHandScissors, faHandPaper, faRunning } from '@fortawesome/free-solid-svg-icons'
-import { BASE_URL } from '@env'
 
 import { GAMES_COLLECTION } from '../../const/default'
 
@@ -54,24 +51,24 @@ const StatList = ({ gameId }) => {
         Span #{'Loading...'}
       if (players.length)
         Div.results
-            Div.row
-              Div.cell Player 1:
-              Div.cell #{players[0].name}
-              Div.cell #{game.results[players[0].id]}
-            Div.row
-              Div.cell Player 2:
-              Div.cell #{players[1].name}
-              Div.cell #{game.results[players[1].id]}
+          Row.row
+            Div.cell Player 1:
+            Div.cell #{players[0].name}
+            Div.cell #{game.results[players[0].id]}
+          Row.row
+            Div.cell Player 2:
+            Div.cell #{players[1].name}
+            Div.cell #{game.results[players[1].id]}
         Row.pagination
           Pagination(pages=pages limit=limit $skip=$skip onChangePage=onChangePage)
         Row.deka
-          Div.row
+          Row.row
             Div.cell #{'#'}
             Div.cell #{players[0].name}
             Div.cell #{players[1].name}
             Div.cell Total
           each round, index in rounds
-            Div.row
+            Row.row
               Div.cell #{skip + index + 1}
               Div.cell #{renderType(round.players[players[0].id].type)}
                 Span.score #{round.players[players[0].id].score}

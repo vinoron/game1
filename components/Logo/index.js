@@ -1,5 +1,6 @@
 import React from 'react'
-import { ImageBackground, TouchableOpacity, Linking } from 'react-native'
+import { ImageBackground, Linking } from 'react-native'
+import { Div } from '@startupjs/ui'
 import { BASE_URL } from '@env'
 
 import './index.styl'
@@ -7,7 +8,7 @@ import './index.styl'
 const imageLogo = `${BASE_URL}/img/logo.jpeg`
 
 const Logo = () => pug`
-  TouchableOpacity.root(onPress=() => Linking.openURL('/'))
+  Div.root(onPress=() => Linking.openURL('/'))
     ImageBackground.imageLogo(source={uri: imageLogo} imageStyleName='imageLogo')
 `
 

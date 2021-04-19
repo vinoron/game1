@@ -1,8 +1,6 @@
 import React from 'react'
-import { TouchableOpacity, Linking } from 'react-native'
-import { Div, Menu, Link, Icon, Button } from '@startupjs/ui'
+import { Div, Menu, Link } from '@startupjs/ui'
 import Logo from 'components/Logo'
-import { SIDEBAR_KEY } from '../../const/default'
 
 import './index.styl'
 

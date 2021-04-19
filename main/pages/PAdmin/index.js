@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router'
 import { Div, Button } from '@startupjs/ui'
-import { useValue, usePage, useDoc, useQuery, observer, useSession } from '@startupjs/react-sharedb'
 
 import PageSlogan from 'components/PageSlogan'
 import GameList from 'components/GameList'

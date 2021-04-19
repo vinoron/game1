@@ -1,24 +1,9 @@
 import { BaseModel } from 'startupjs/orm'
-import uuid from 'uuid'
 import { ROUNDS_COLLECTION, PLAYERS_COLLECTION } from '../const/default'
 
 const ROUND_PAGE_LIMIT = 10
 
 export default class GameModel extends BaseModel {
-  async create (fields) {
-    const id = uuid()
-    const obj = this.scope(`${this.getCollection()}.${id}`)
-    await obj.createAsync({
-      ...fields,
-      createdAt: Date.now(),
-      players: [],
-      rounds: [],
-      results: [],
-      startedAt: null,
-      finishedAt: null
-    })
-  }
-
   async fetchStat (skip = 0) {
     const data = this.get()
     const page = Math.floor(skip / ROUND_PAGE_LIMIT)

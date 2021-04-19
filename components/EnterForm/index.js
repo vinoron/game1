@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import uuid from 'uuid'
-import { Div, Link, Checkbox, Button } from '@startupjs/ui'
 import { withRouter } from 'react-router'
-import { useLocal, observer } from '@startupjs/react-sharedb'
+import { useLocal, observer } from 'startupjs'
+import { Div, Checkbox, Button } from '@startupjs/ui'
 import Title from 'components/Title'
 
 import './index.styl'
@@ -17,7 +16,7 @@ const EnterForm = ({ id, history }) => {
     } else {
       history.push('/games')
       if (!user) {
-        $user.set({ id: uuid(), name: '' })
+        $user.set({ name: '' })
       }
     }
   }

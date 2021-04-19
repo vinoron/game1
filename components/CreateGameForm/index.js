@@ -1,17 +1,18 @@
 import React, { useCallback, useState } from 'react'
-import { Div, Span, Tag, TextInput, Multiselect, Link, Button } from '@startupjs/ui'
 import { withRouter } from 'react-router'
-import { useValue, useDoc, useQuery, observer } from '@startupjs/react-sharedb'
+import { useValue, useDoc, useModel, observer } from 'startupjs'
+import { Div, TextInput, Button, Row } from '@startupjs/ui'
 import Title from 'components/Title'
 import { GAMES_COLLECTION } from '../../const/default'
 import './index.styl'
 
 const CreateGameForm = ({ id, history }) => {
-  const [game, $game] = useDoc(GAMES_COLLECTION, id)
-  const [formData, $formData] = useValue(id ? { ...game } : {})
+  const $games = useModel(GAMES_COLLECTION)
+  const [game = {}, $game] = useDoc(GAMES_COLLECTION, id)
+  const [formData, $formData] = useValue({ ...game })
   const onSetFormValue = useCallback(
     (key) => (value) => {
-      $formData.setEach({ [key]: value })
+      $formData.set(key, value)
     }, [])
 
   const onSave = async () => {
@@ -19,7 +20,7 @@ const CreateGameForm = ({ id, history }) => {
       $game.setEach(formData)
       history.push(`/admin/edit-${id}`)
     } else {
-      await $game.create(formData)
+      await $games.create(formData)
       history.push('/admin')
     }
   }
@@ -29,13 +30,13 @@ const CreateGameForm = ({ id, history }) => {
       if formData.startedAt
         Title Game already started
         Div.status
-        Div.footer
+        Row.footer
           Button.button(onClick=onFinish) #{'FINISH GAME'}
       else 
         Title Create new game
         TextInput.input(placeholder='Game Name' onChangeText=onSetFormValue('name') value=formData.name)
         TextInput.input(placeholder='Creator Name' onChangeText=onSetFormValue('creatorName') value=formData.creatorName)
-        Div.footer
+        Row.footer
           Button.button(onClick=onSave) #{id ? 'UPDATE' : 'CREATE'}
   `
 }

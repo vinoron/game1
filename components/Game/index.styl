@@ -1,6 +1,5 @@
 .root
   width 100%
-  display flex
   flex-direction column
   padding 0 1u
 
@@ -8,8 +7,6 @@
   padding 1u
 
 .types
-  display flex
-  flex-direction row
   margin-top 1u
 
 .type, .capitulate
@@ -21,18 +18,16 @@
 
 .gameInfo
   margin-top 1u
-  width 400px
-  border-top 1px solid $color-gray
-  border-right 1px solid $color-gray
+  width 50u
+  border-top 1px solid $UI.colors.colorGray
+  border-right 1px solid $UI.colors.colorGray
 
 .row
-  display grid
-  grid-template-columns 1fr 1fr
-  border-bottom 1px solid $color-gray
+  border-bottom 1px solid $UI.colors.colorGray
 
 .cell, .headcell
   padding 1u
-  border-left 1px solid $color-gray
+  border-left 1px solid $UI.colors.colorGray
 
 .headcell
   font-weight bold
@@ -43,11 +38,11 @@
   font-weight bold
 
 .win
-  color $color-green
+  color $UI.colors.colorGreen
 .lose
-  color $color-red
+  color $UI.colors.colorRed
 .draw
-  color $color-grey
+  color $UI.colors.colorGray
 
 .gameStatus
   font-size 20px
